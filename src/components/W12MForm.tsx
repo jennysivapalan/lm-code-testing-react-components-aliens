@@ -7,10 +7,15 @@ import TwoPlusTwo from "./TwoPlusTwo";
 import SparingReason from "./SparingReason";
 
 const W12MForm = () => {
+  const [speciesName, setSpeciesName] = useState("humans");
+
   return (
     <section className="w12MForm">
       <W12MHeader />
-      <SpeciesName />
+      <SpeciesName
+        speciesName={speciesName}
+        onChangeSpeciesName={(e) => setSpeciesName(e)}
+      />
       <PlanetName />
       <NumberOfBeings />
       <TwoPlusTwo />
