@@ -9,6 +9,7 @@ import SparingReason from "./SparingReason";
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("humans");
   const [planetName, setPlanetName] = useState("Earth");
+  const [numberOfBeings, setNumberOfBeings] = useState(0);
 
   return (
     <section className="w12MForm">
@@ -21,7 +22,10 @@ const W12MForm = () => {
         planetName={planetName}
         onChangePlanetName={(e) => setPlanetName(e)}
       />
-      <NumberOfBeings />
+      <NumberOfBeings
+        numberOfBeings={numberOfBeings}
+        onChangeBeings={(e) => setNumberOfBeings(e)}
+      />
       <TwoPlusTwo />
       <SparingReason />
     </section>
