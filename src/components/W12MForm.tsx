@@ -10,6 +10,7 @@ const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("humans");
   const [planetName, setPlanetName] = useState("Earth");
   const [numberOfBeings, setNumberOfBeings] = useState(0);
+  const [twoPlusTwoValue, setTwoPlusTwoPlusValue] = useState("4");
 
   return (
     <section className="w12MForm">
@@ -26,7 +27,10 @@ const W12MForm = () => {
         numberOfBeings={numberOfBeings}
         onChangeBeings={(e) => setNumberOfBeings(e)}
       />
-      <TwoPlusTwo />
+      <TwoPlusTwo
+        twoPlusTwoValue={twoPlusTwoValue}
+        onChangeTwoPlusTwoValue={(e) => setTwoPlusTwoPlusValue(e)}
+      />
       <SparingReason />
     </section>
   );
