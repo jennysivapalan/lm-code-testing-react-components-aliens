@@ -13,6 +13,16 @@ const W12MForm = () => {
   const [twoPlusTwoValue, setTwoPlusTwoPlusValue] = useState("4");
   const [sparingReason, setSparingReason] = useState("");
 
+  function logFormResponse() {
+    console.log(
+      speciesName,
+      planetName,
+      numberOfBeings,
+      twoPlusTwoValue,
+      sparingReason
+    );
+  }
+
   return (
     <section className="w12MForm">
       <W12MHeader />
@@ -36,6 +46,9 @@ const W12MForm = () => {
         sparingReason={sparingReason}
         onChangeSparingReason={(e) => setSparingReason(e)}
       />
+      <button type="button" onClick={() => logFormResponse()}>
+        Submit
+      </button>
     </section>
   );
 };
