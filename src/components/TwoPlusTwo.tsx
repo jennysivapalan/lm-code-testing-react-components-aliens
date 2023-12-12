@@ -8,7 +8,7 @@ const TwoPlusTwo: React.FC<TwoPlusTwoProps> = ({
   onChangeTwoPlusTwoValue,
 }) => (
   <div>
-    <label htmlFor="two-plus-two">What is 2 + 2</label>
+    <label htmlFor="two-plus-two">What is 2 + 2?</label>
     <select
       name="two-plus-two"
       id="two-plus-two"
