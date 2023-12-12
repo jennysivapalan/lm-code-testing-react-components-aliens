@@ -9,7 +9,7 @@ import SparingReason from "./SparingReason";
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("humans");
   const [planetName, setPlanetName] = useState("Earth");
-  const [numberOfBeings, setNumberOfBeings] = useState(0);
+  const [numberOfBeings, setNumberOfBeings] = useState("0");
   const [twoPlusTwoValue, setTwoPlusTwoPlusValue] = useState("4");
   const [sparingReason, setSparingReason] = useState("");
 
