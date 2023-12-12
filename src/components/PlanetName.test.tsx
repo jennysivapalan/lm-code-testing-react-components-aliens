@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import PlanetName from "./PlanetName";
 
-test("renders form element", () => {
+test("renders form element and displays planetName props", () => {
   render(<PlanetName planetName="mars" onChangePlanetName={() => void {}} />);
 
   const labelText = screen.getByLabelText(/Planet Name/i);

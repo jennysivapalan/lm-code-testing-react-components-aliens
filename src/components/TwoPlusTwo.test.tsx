@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import TwoPlusTwo from "./TwoPlusTwo";
-test("renders form element", () => {
+test("renders form element and displays twoPlusTwoValue props", () => {
   render(
     <TwoPlusTwo twoPlusTwoValue="4" onChangeTwoPlusTwoValue={() => void {}} />
   );

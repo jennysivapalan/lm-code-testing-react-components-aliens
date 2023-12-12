@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import NumberOfBeings from "./NumberOfBeings";
 
-test("renders form element", () => {
+test("renders form element and displays numberOfBeing props", () => {
   render(<NumberOfBeings numberOfBeings="2" onChangeBeings={() => void {}} />);
 
   const labelText = screen.getByLabelText(/Number Of Beings/i);

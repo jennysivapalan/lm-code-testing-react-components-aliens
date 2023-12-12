@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import SparingReason from "./SparingReason";
-test("renders form element", () => {
+test("renders form element and displays sparingReason props", () => {
   render(
     <SparingReason
       sparingReason="Life is good!"
