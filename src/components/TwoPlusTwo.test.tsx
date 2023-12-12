@@ -11,13 +11,26 @@ test("renders form element", () => {
   expect(inputText).toBeInTheDocument();
 });
 
-test("calls the onChange function in input with correct value", () => {
-  const mockOnChange = jest.fn();
+describe("onChange functionality", () => {
+  test("calls the onChange function in input with correct value", () => {
+    const mockOnChange = jest.fn();
 
-  render(
-    <TwoPlusTwo twoPlusTwoValue="4" onChangeTwoPlusTwoValue={mockOnChange} />
-  );
-  const input = screen.getByLabelText("What is 2 + 2?");
-  fireEvent.change(input, { target: { value: "not-4" } });
-  expect(mockOnChange).toHaveBeenCalledWith("not-4");
+    render(
+      <TwoPlusTwo twoPlusTwoValue="4" onChangeTwoPlusTwoValue={mockOnChange} />
+    );
+    const input = screen.getByLabelText("What is 2 + 2?");
+    fireEvent.change(input, { target: { value: "not-4" } });
+    expect(mockOnChange).toHaveBeenCalledWith("not-4");
+  });
+
+  test("calls the onChange function ignores values not in the option list", () => {
+    const mockOnChange = jest.fn();
+
+    render(
+      <TwoPlusTwo twoPlusTwoValue="4" onChangeTwoPlusTwoValue={mockOnChange} />
+    );
+    const input = screen.getByLabelText("What is 2 + 2?");
+    fireEvent.change(input, { target: { value: "42" } });
+    expect(mockOnChange).toHaveBeenCalledWith("");
+  });
 });
