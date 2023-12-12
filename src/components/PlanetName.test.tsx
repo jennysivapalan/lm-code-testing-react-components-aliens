@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import PlanetName from "./PlanetName";
 
 test("renders form element", () => {
@@ -8,4 +8,14 @@ test("renders form element", () => {
   expect(labelText).toBeInTheDocument();
   const inputText = screen.getByDisplayValue("mars");
   expect(inputText).toBeInTheDocument();
+});
+
+test("calls the onChange function in input with correct value", () => {
+  const mockOnChange = jest.fn();
+
+  render(<PlanetName planetName="mars" onChangePlanetName={mockOnChange} />);
+
+  const input = screen.getByRole("textbox");
+  fireEvent.change(input, { target: { value: "Earth" } });
+  expect(mockOnChange).toHaveBeenCalledWith("Earth");
 });
