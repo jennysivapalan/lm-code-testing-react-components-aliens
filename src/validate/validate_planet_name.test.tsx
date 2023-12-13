@@ -8,8 +8,11 @@ describe("valid planet name", () => {
 
     expect(validatePlanetName("mars venus")).toEqual([]);
 
-    expect(validatePlanetName("6mars33")).toEqual([]);
+    expect(validatePlanetName("6mars33 ")).toEqual([]);
     expect(validatePlanetName("77")).toEqual([]);
+
+    const longWord = Array(49).fill("a");
+    expect(validatePlanetName(longWord.join(""))).toEqual([]);
   });
 });
 

@@ -8,9 +8,12 @@ describe("valid species name", () => {
   test("species name should be valid", () => {
     expect(validateSpeciesName("hello world")).toEqual([]);
 
-    expect(validateSpeciesName("hello")).toEqual([]);
+    expect(validateSpeciesName("yoo")).toEqual([]);
 
-    expect(validateSpeciesName("hello world wahoo")).toEqual([]);
+    expect(validateSpeciesName("hello world ")).toEqual([]);
+
+    const longWord = Array(23).fill("a");
+    expect(validateSpeciesName(longWord.join(""))).toEqual([]);
   });
 });
 describe("validation for number of characters", () => {
