@@ -7,6 +7,7 @@ import TwoPlusTwo from "./TwoPlusTwo";
 import SparingReason from "./SparingReason";
 import validateSpeciesName from "../validate/validate_species_name";
 import validatePlanetName from "../validate/validate_planet_name";
+import validateSparingReason from "../validate/validate_sparing_reason";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("humans");
@@ -17,7 +18,11 @@ const W12MForm = () => {
 
   const [numberOfBeings, setNumberOfBeings] = useState("0");
   const [twoPlusTwoValue, setTwoPlusTwoPlusValue] = useState("4");
+
   const [sparingReason, setSparingReason] = useState("");
+  const [sparingReasonErrorMsgs, setSparingReasonErrorMsgs] = useState<
+    string[]
+  >([]);
 
   function logFormResponse() {
     const validateSpecies: string[] = validateSpeciesName(speciesName);
@@ -29,6 +34,11 @@ const W12MForm = () => {
     validatePlanet.length > 0
       ? setPlanetErrorMsgs(validatePlanet)
       : setPlanetErrorMsgs([]);
+
+    const validateReason: string[] = validateSparingReason(sparingReason);
+    validateReason.length > 0
+      ? setSparingReasonErrorMsgs(validateReason)
+      : setSparingReasonErrorMsgs([]);
 
     console.log(
       speciesName,
@@ -63,6 +73,7 @@ const W12MForm = () => {
       <SparingReason
         sparingReason={sparingReason}
         onChangeSparingReason={(e) => setSparingReason(e)}
+        errorMessages={sparingReasonErrorMsgs}
       />
       <button type="button" onClick={() => logFormResponse()}>
         Submit

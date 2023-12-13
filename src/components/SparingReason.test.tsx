@@ -5,6 +5,7 @@ test("renders form element and displays sparingReason props", () => {
     <SparingReason
       sparingReason="Life is good!"
       onChangeSparingReason={() => void {}}
+      errorMessages={[]}
     />
   );
 
@@ -21,6 +22,7 @@ test("calls the onChange function in input with correct value", () => {
     <SparingReason
       sparingReason="Life is good!"
       onChangeSparingReason={mockOnChange}
+      errorMessages={[]}
     />
   );
   const input = screen.getByRole("textbox");
