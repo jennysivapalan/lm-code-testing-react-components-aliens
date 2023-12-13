@@ -2,7 +2,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import PlanetName from "./PlanetName";
 
 test("renders form element and displays planetName props", () => {
-  render(<PlanetName planetName="mars" onChangePlanetName={() => void {}} />);
+  render(
+    <PlanetName
+      planetName="mars"
+      onChangePlanetName={() => void {}}
+      errorMessages={[]}
+    />
+  );
 
   const labelText = screen.getByLabelText(/Planet Name/i);
   expect(labelText).toBeInTheDocument();
@@ -13,7 +19,13 @@ test("renders form element and displays planetName props", () => {
 test("calls the onChange function in input with correct value", () => {
   const mockOnChange = jest.fn();
 
-  render(<PlanetName planetName="mars" onChangePlanetName={mockOnChange} />);
+  render(
+    <PlanetName
+      planetName="mars"
+      onChangePlanetName={mockOnChange}
+      errorMessages={[]}
+    />
+  );
 
   const input = screen.getByRole("textbox");
   fireEvent.change(input, { target: { value: "Earth" } });
