@@ -6,8 +6,11 @@ const CHARACTER_ERROR =
 
 describe("valid species name", () => {
   test("species name should be valid", () => {
-    const name = "hello world";
-    expect(validateSpeciesName(name)).toEqual([]);
+    expect(validateSpeciesName("hello world")).toEqual([]);
+
+    expect(validateSpeciesName("hello")).toEqual([]);
+
+    expect(validateSpeciesName("hello world wahoo")).toEqual([]);
   });
 });
 describe("validation for number of characters", () => {
