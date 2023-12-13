@@ -5,15 +5,23 @@ import PlanetName from "./PlanetName";
 import NumberOfBeings from "./NumberOfBeings";
 import TwoPlusTwo from "./TwoPlusTwo";
 import SparingReason from "./SparingReason";
+import validateSpeciesName from "../validate/validate_species_name";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("humans");
+  const [speciesErrorMsgs, setSpeciesErrorMsgs] = useState<string[]>([]);
+
   const [planetName, setPlanetName] = useState("Earth");
   const [numberOfBeings, setNumberOfBeings] = useState("0");
   const [twoPlusTwoValue, setTwoPlusTwoPlusValue] = useState("4");
   const [sparingReason, setSparingReason] = useState("");
 
   function logFormResponse() {
+    const validateSpecies: string[] = validateSpeciesName(speciesName);
+    validateSpecies.length > 0
+      ? setSpeciesErrorMsgs(validateSpecies)
+      : setSpeciesErrorMsgs([]);
+
     console.log(
       speciesName,
       planetName,
@@ -29,6 +37,7 @@ const W12MForm = () => {
       <SpeciesName
         speciesName={speciesName}
         onChangeSpeciesName={(e) => setSpeciesName(e)}
+        errorMessages={speciesErrorMsgs}
       />
       <PlanetName
         planetName={planetName}
