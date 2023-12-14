@@ -8,6 +8,7 @@ import SparingReason from "./SparingReason";
 import validateSpeciesName from "../validate/validate_species_name";
 import validatePlanetName from "../validate/validate_planet_name";
 import validateSparingReason from "../validate/validate_sparing_reason";
+import validateNumberOfBeings from "../validate/validate_number_of_beings";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("humans");
@@ -17,6 +18,10 @@ const W12MForm = () => {
   const [planetErrorMsgs, setPlanetErrorMsgs] = useState<string[]>([]);
 
   const [numberOfBeings, setNumberOfBeings] = useState("0");
+  const [numberOfBeingsErrorMsgs, setnumberOfBeingsErrorMsgs] = useState<
+    string[]
+  >([]);
+
   const [twoPlusTwoValue, setTwoPlusTwoPlusValue] = useState("4");
 
   const [sparingReason, setSparingReason] = useState("");
@@ -39,6 +44,11 @@ const W12MForm = () => {
     validateReason.length > 0
       ? setSparingReasonErrorMsgs(validateReason)
       : setSparingReasonErrorMsgs([]);
+
+    const validateBeings: string[] = validateNumberOfBeings(numberOfBeings);
+    validateBeings.length > 0
+      ? setnumberOfBeingsErrorMsgs(validateBeings)
+      : setnumberOfBeingsErrorMsgs([]);
 
     console.log(
       speciesName,
@@ -65,6 +75,7 @@ const W12MForm = () => {
       <NumberOfBeings
         numberOfBeings={numberOfBeings}
         onChangeBeings={(e) => setNumberOfBeings(e)}
+        errorMessages={numberOfBeingsErrorMsgs}
       />
       <TwoPlusTwo
         twoPlusTwoValue={twoPlusTwoValue}
