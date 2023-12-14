@@ -43,26 +43,14 @@ const W12MForm = () => {
 
   function logFormResponse() {
     validate(validateSpeciesName, speciesName, setSpeciesErrorMsgs);
-
-    const validatePlanet: string[] = validatePlanetName(planetName);
-    validatePlanet.length > 0
-      ? setPlanetErrorMsgs(validatePlanet)
-      : setPlanetErrorMsgs([]);
-
-    const validateReason: string[] = validateSparingReason(sparingReason);
-    validateReason.length > 0
-      ? setSparingReasonErrorMsgs(validateReason)
-      : setSparingReasonErrorMsgs([]);
-
-    const validateBeings: string[] = validateNumberOfBeings(numberOfBeings);
-    validateBeings.length > 0
-      ? setNumberOfBeingsErrorMsgs(validateBeings)
-      : setNumberOfBeingsErrorMsgs([]);
-
-    const validateTwoCalc: string[] = validateTwoPlusTwo(twoPlusTwoValue);
-    validateTwoCalc.length > 0
-      ? setTwoPlusTwoValueErrorMsgs(validateTwoCalc)
-      : setTwoPlusTwoValueErrorMsgs([]);
+    validate(validatePlanetName, planetName, setPlanetErrorMsgs);
+    validate(validateSparingReason, sparingReason, setSparingReasonErrorMsgs);
+    validate(
+      validateNumberOfBeings,
+      numberOfBeings,
+      setNumberOfBeingsErrorMsgs
+    );
+    validate(validateTwoPlusTwo, twoPlusTwoValue, setTwoPlusTwoValueErrorMsgs);
 
     console.log(
       speciesName,
