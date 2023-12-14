@@ -1,12 +1,15 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import TwoPlusTwo from "./TwoPlusTwo";
-import validateTwoPlusTwo from "../validate/validate_two_plus_two";
 test("renders form element and displays twoPlusTwoValue props", () => {
+  const mockOnChange = jest.fn();
+  const mockValidateTwoPlusTwo = jest.fn();
+  mockValidateTwoPlusTwo.mockReturnValue([]);
+
   render(
     <TwoPlusTwo
       twoPlusTwoValue="4"
-      onChangeTwoPlusTwoValue={() => void {}}
-      validateField={validateTwoPlusTwo}
+      onChangeTwoPlusTwoValue={mockOnChange}
+      validateField={mockValidateTwoPlusTwo}
     />
   );
 
@@ -14,17 +17,23 @@ test("renders form element and displays twoPlusTwoValue props", () => {
   expect(labelText).toBeInTheDocument();
   const inputText = screen.getByDisplayValue("4");
   expect(inputText).toBeInTheDocument();
+  const errorMessage = screen.queryByText(
+    "Two plus two is 4! Choose 4 to be spared!"
+  );
+  expect(errorMessage).toBe(null);
 });
 
 describe("onChange functionality", () => {
   test("calls the onChange function in input with correct value", () => {
     const mockOnChange = jest.fn();
+    const mockValidateTwoPlusTwo = jest.fn();
+    mockValidateTwoPlusTwo.mockReturnValue([]);
 
     render(
       <TwoPlusTwo
         twoPlusTwoValue="4"
         onChangeTwoPlusTwoValue={mockOnChange}
-        validateField={validateTwoPlusTwo}
+        validateField={mockValidateTwoPlusTwo}
       />
     );
     const input = screen.getByLabelText("What is 2 + 2?");
@@ -34,16 +43,39 @@ describe("onChange functionality", () => {
 
   test("calls the onChange function ignores values not in the option list", () => {
     const mockOnChange = jest.fn();
+    const mockValidateTwoPlusTwo = jest.fn();
+    mockValidateTwoPlusTwo.mockReturnValue([]);
 
     render(
       <TwoPlusTwo
         twoPlusTwoValue="4"
         onChangeTwoPlusTwoValue={mockOnChange}
-        validateField={validateTwoPlusTwo}
+        validateField={mockValidateTwoPlusTwo}
       />
     );
     const input = screen.getByLabelText("What is 2 + 2?");
     fireEvent.change(input, { target: { value: "42" } });
     expect(mockOnChange).toHaveBeenCalledWith("");
   });
+});
+
+test("error messages are displayed when invalid option is used used", () => {
+  const mockOnChange = jest.fn();
+  const mockValidateTwoPlusTwo = jest.fn();
+  mockValidateTwoPlusTwo.mockReturnValue([
+    "Two plus two is 4! Choose 4 to be spared!",
+  ]);
+
+  render(
+    <TwoPlusTwo
+      twoPlusTwoValue="4"
+      onChangeTwoPlusTwoValue={mockOnChange}
+      validateField={mockValidateTwoPlusTwo}
+    />
+  );
+  const errorMessage = screen.getByText(
+    "Two plus two is 4! Choose 4 to be spared!"
+  );
+
+  expect(errorMessage).toBeInTheDocument();
 });
