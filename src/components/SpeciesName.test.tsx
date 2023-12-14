@@ -1,13 +1,13 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import SpeciesName from "./SpeciesName";
-import ErrorMessages from "./ErrorMessages";
+import validateSpeciesName from "../validate/validate_species_name";
 
 test("renders form element and displays speciesName props", () => {
   render(
     <SpeciesName
       speciesName="humans"
       onChangeSpeciesName={() => void {}}
-      errorMessages={[]}
+      validateField={validateSpeciesName}
     />
   );
 
@@ -24,7 +24,7 @@ test("calls the onChange function in input with correct value", () => {
     <SpeciesName
       speciesName="humans"
       onChangeSpeciesName={mockOnChange}
-      errorMessages={[]}
+      validateField={validateSpeciesName}
     />
   );
 

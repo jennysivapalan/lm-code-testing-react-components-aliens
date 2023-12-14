@@ -13,7 +13,6 @@ import validateTwoPlusTwo from "../validate/validate_two_plus_two";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("humans");
-  const [speciesErrorMsgs, setSpeciesErrorMsgs] = useState<string[]>([]);
 
   const [planetName, setPlanetName] = useState("Earth");
   const [planetErrorMsgs, setPlanetErrorMsgs] = useState<string[]>([]);
@@ -42,7 +41,6 @@ const W12MForm = () => {
   }
 
   function logFormResponse() {
-    validate(validateSpeciesName, speciesName, setSpeciesErrorMsgs);
     validate(validatePlanetName, planetName, setPlanetErrorMsgs);
     validate(validateSparingReason, sparingReason, setSparingReasonErrorMsgs);
     validate(
@@ -67,7 +65,7 @@ const W12MForm = () => {
       <SpeciesName
         speciesName={speciesName}
         onChangeSpeciesName={(e) => setSpeciesName(e)}
-        errorMessages={speciesErrorMsgs}
+        validateField={validateSpeciesName}
       />
       <PlanetName
         planetName={planetName}

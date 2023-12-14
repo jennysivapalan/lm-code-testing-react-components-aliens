@@ -3,13 +3,13 @@ import ErrorMessages from "./ErrorMessages";
 interface SpeciesNameProps {
   speciesName: string;
   onChangeSpeciesName: (value: string) => void;
-  errorMessages: string[];
+  validateField: (name: string) => string[];
 }
 
 const SpeciesName: React.FC<SpeciesNameProps> = ({
   speciesName,
   onChangeSpeciesName,
-  errorMessages,
+  validateField,
 }) => (
   <>
     <div>
@@ -22,7 +22,7 @@ const SpeciesName: React.FC<SpeciesNameProps> = ({
         onChange={(e) => onChangeSpeciesName(e.target.value)}
       />
     </div>
-    <ErrorMessages messages={errorMessages} />
+    <ErrorMessages messages={validateField(speciesName)} />
   </>
 );
 
