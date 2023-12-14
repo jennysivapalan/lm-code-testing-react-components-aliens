@@ -3,13 +3,13 @@ import ErrorMessages from "./ErrorMessages";
 interface SparingReasonProps {
   sparingReason: string;
   onChangeSparingReason: (value: string) => void;
-  errorMessages: string[];
+  validateField: (name: string) => string[];
 }
 
 const SparingReason: React.FC<SparingReasonProps> = ({
   sparingReason,
   onChangeSparingReason,
-  errorMessages,
+  validateField,
 }) => (
   <>
     <div>
@@ -21,7 +21,7 @@ const SparingReason: React.FC<SparingReasonProps> = ({
         onChange={(e) => onChangeSparingReason(e.target.value)}
       />
     </div>
-    <ErrorMessages messages={errorMessages} />
+    <ErrorMessages messages={validateField(sparingReason)} />
   </>
 );
 

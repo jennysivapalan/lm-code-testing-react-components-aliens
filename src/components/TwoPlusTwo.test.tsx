@@ -1,11 +1,12 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import TwoPlusTwo from "./TwoPlusTwo";
+import validateTwoPlusTwo from "../validate/validate_two_plus_two";
 test("renders form element and displays twoPlusTwoValue props", () => {
   render(
     <TwoPlusTwo
       twoPlusTwoValue="4"
       onChangeTwoPlusTwoValue={() => void {}}
-      errorMessages={[]}
+      validateField={validateTwoPlusTwo}
     />
   );
 
@@ -23,7 +24,7 @@ describe("onChange functionality", () => {
       <TwoPlusTwo
         twoPlusTwoValue="4"
         onChangeTwoPlusTwoValue={mockOnChange}
-        errorMessages={[]}
+        validateField={validateTwoPlusTwo}
       />
     );
     const input = screen.getByLabelText("What is 2 + 2?");
@@ -38,7 +39,7 @@ describe("onChange functionality", () => {
       <TwoPlusTwo
         twoPlusTwoValue="4"
         onChangeTwoPlusTwoValue={mockOnChange}
-        errorMessages={[]}
+        validateField={validateTwoPlusTwo}
       />
     );
     const input = screen.getByLabelText("What is 2 + 2?");

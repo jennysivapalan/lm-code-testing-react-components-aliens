@@ -1,11 +1,12 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import SparingReason from "./SparingReason";
+import validateSparingReason from "../validate/validate_sparing_reason";
 test("renders form element and displays sparingReason props", () => {
   render(
     <SparingReason
       sparingReason="Life is good!"
       onChangeSparingReason={() => void {}}
-      errorMessages={[]}
+      validateField={validateSparingReason}
     />
   );
 
@@ -22,7 +23,7 @@ test("calls the onChange function in input with correct value", () => {
     <SparingReason
       sparingReason="Life is good!"
       onChangeSparingReason={mockOnChange}
-      errorMessages={[]}
+      validateField={validateSparingReason}
     />
   );
   const input = screen.getByRole("textbox");

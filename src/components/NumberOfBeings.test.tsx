@@ -1,12 +1,13 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import NumberOfBeings from "./NumberOfBeings";
+import validateNumberOfBeings from "../validate/validate_number_of_beings";
 
 test("renders form element and displays numberOfBeing props", () => {
   render(
     <NumberOfBeings
       numberOfBeings="2"
       onChangeBeings={() => void {}}
-      errorMessages={[]}
+      validateField={validateNumberOfBeings}
     />
   );
 
@@ -22,7 +23,7 @@ test("calls the onChange function in input with correct value", () => {
     <NumberOfBeings
       numberOfBeings="2"
       onChangeBeings={mockOnChange}
-      errorMessages={[]}
+      validateField={validateNumberOfBeings}
     />
   );
 

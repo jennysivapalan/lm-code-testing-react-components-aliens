@@ -3,13 +3,13 @@ import ErrorMessages from "./ErrorMessages";
 interface PlanetNameProps {
   planetName: string;
   onChangePlanetName: (value: string) => void;
-  errorMessages: string[];
+  validateField: (name: string) => string[];
 }
 
 const PlanetName: React.FC<PlanetNameProps> = ({
   planetName,
   onChangePlanetName,
-  errorMessages,
+  validateField,
 }) => (
   <>
     <div>
@@ -22,7 +22,7 @@ const PlanetName: React.FC<PlanetNameProps> = ({
         onChange={(e) => onChangePlanetName(e.target.value)}
       />
     </div>
-    <ErrorMessages messages={errorMessages} />
+    <ErrorMessages messages={validateField(planetName)} />
   </>
 );
 

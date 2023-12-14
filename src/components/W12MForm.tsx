@@ -13,43 +13,14 @@ import validateTwoPlusTwo from "../validate/validate_two_plus_two";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("humans");
-
   const [planetName, setPlanetName] = useState("Earth");
-  const [planetErrorMsgs, setPlanetErrorMsgs] = useState<string[]>([]);
-
-  const [numberOfBeings, setNumberOfBeings] = useState("0");
-  const [numberOfBeingsErrorMsgs, setNumberOfBeingsErrorMsgs] = useState<
-    string[]
-  >([]);
-
+  const [numberOfBeings, setNumberOfBeings] = useState("1000000000");
   const [twoPlusTwoValue, setTwoPlusTwoPlusValue] = useState("4");
-  const [twoPlusTwoValueErrorMsgs, setTwoPlusTwoValueErrorMsgs] = useState<
-    string[]
-  >([]);
-  const [sparingReason, setSparingReason] = useState("");
-  const [sparingReasonErrorMsgs, setSparingReasonErrorMsgs] = useState<
-    string[]
-  >([]);
-
-  function validate(
-    validateField: (name: string) => string[],
-    field: string,
-    setErrorMessage: (value: React.SetStateAction<string[]>) => void
-  ) {
-    const errorMessages = validateField(field);
-    setErrorMessage(errorMessages);
-  }
+  const [sparingReason, setSparingReason] = useState(
+    "Life on my planet is great!"
+  );
 
   function logFormResponse() {
-    validate(validatePlanetName, planetName, setPlanetErrorMsgs);
-    validate(validateSparingReason, sparingReason, setSparingReasonErrorMsgs);
-    validate(
-      validateNumberOfBeings,
-      numberOfBeings,
-      setNumberOfBeingsErrorMsgs
-    );
-    validate(validateTwoPlusTwo, twoPlusTwoValue, setTwoPlusTwoValueErrorMsgs);
-
     console.log(
       speciesName,
       planetName,
@@ -70,22 +41,22 @@ const W12MForm = () => {
       <PlanetName
         planetName={planetName}
         onChangePlanetName={(e) => setPlanetName(e)}
-        errorMessages={planetErrorMsgs}
+        validateField={validatePlanetName}
       />
       <NumberOfBeings
         numberOfBeings={numberOfBeings}
         onChangeBeings={(e) => setNumberOfBeings(e)}
-        errorMessages={numberOfBeingsErrorMsgs}
+        validateField={validateNumberOfBeings}
       />
       <TwoPlusTwo
         twoPlusTwoValue={twoPlusTwoValue}
         onChangeTwoPlusTwoValue={(e) => setTwoPlusTwoPlusValue(e)}
-        errorMessages={twoPlusTwoValueErrorMsgs}
+        validateField={validateTwoPlusTwo}
       />
       <SparingReason
         sparingReason={sparingReason}
         onChangeSparingReason={(e) => setSparingReason(e)}
-        errorMessages={sparingReasonErrorMsgs}
+        validateField={validateSparingReason}
       />
       <button type="button" onClick={() => logFormResponse()}>
         Submit

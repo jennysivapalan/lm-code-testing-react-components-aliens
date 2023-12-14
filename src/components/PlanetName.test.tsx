@@ -1,12 +1,13 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import PlanetName from "./PlanetName";
+import validatePlanetName from "../validate/validate_planet_name";
 
 test("renders form element and displays planetName props", () => {
   render(
     <PlanetName
       planetName="mars"
       onChangePlanetName={() => void {}}
-      errorMessages={[]}
+      validateField={validatePlanetName}
     />
   );
 
@@ -23,7 +24,7 @@ test("calls the onChange function in input with correct value", () => {
     <PlanetName
       planetName="mars"
       onChangePlanetName={mockOnChange}
-      errorMessages={[]}
+      validateField={validatePlanetName}
     />
   );
 

@@ -3,13 +3,13 @@ import ErrorMessages from "./ErrorMessages";
 interface NumberOfBeingsProps {
   numberOfBeings: string;
   onChangeBeings: (value: string) => void;
-  errorMessages: string[];
+  validateField: (name: string) => string[];
 }
 
 const NumberOfBeings: React.FC<NumberOfBeingsProps> = ({
   numberOfBeings,
   onChangeBeings,
-  errorMessages,
+  validateField,
 }) => (
   <>
     <div>
@@ -22,7 +22,7 @@ const NumberOfBeings: React.FC<NumberOfBeingsProps> = ({
         onChange={(e) => onChangeBeings(e.target.value)}
       />
     </div>
-    <ErrorMessages messages={errorMessages} />
+    <ErrorMessages messages={validateField(numberOfBeings)} />
   </>
 );
 
