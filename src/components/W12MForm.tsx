@@ -32,11 +32,17 @@ const W12MForm = () => {
     string[]
   >([]);
 
+  function validate(
+    validateField: (name: string) => string[],
+    field: string,
+    setErrorMessage: (value: React.SetStateAction<string[]>) => void
+  ) {
+    const errorMessages = validateField(field);
+    setErrorMessage(errorMessages);
+  }
+
   function logFormResponse() {
-    const validateSpecies: string[] = validateSpeciesName(speciesName);
-    validateSpecies.length > 0
-      ? setSpeciesErrorMsgs(validateSpecies)
-      : setSpeciesErrorMsgs([]);
+    validate(validateSpeciesName, speciesName, setSpeciesErrorMsgs);
 
     const validatePlanet: string[] = validatePlanetName(planetName);
     validatePlanet.length > 0
