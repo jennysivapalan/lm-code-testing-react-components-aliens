@@ -2,7 +2,11 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import TwoPlusTwo from "./TwoPlusTwo";
 test("renders form element and displays twoPlusTwoValue props", () => {
   render(
-    <TwoPlusTwo twoPlusTwoValue="4" onChangeTwoPlusTwoValue={() => void {}} />
+    <TwoPlusTwo
+      twoPlusTwoValue="4"
+      onChangeTwoPlusTwoValue={() => void {}}
+      errorMessages={[]}
+    />
   );
 
   const labelText = screen.getByLabelText("What is 2 + 2?");
@@ -16,7 +20,11 @@ describe("onChange functionality", () => {
     const mockOnChange = jest.fn();
 
     render(
-      <TwoPlusTwo twoPlusTwoValue="4" onChangeTwoPlusTwoValue={mockOnChange} />
+      <TwoPlusTwo
+        twoPlusTwoValue="4"
+        onChangeTwoPlusTwoValue={mockOnChange}
+        errorMessages={[]}
+      />
     );
     const input = screen.getByLabelText("What is 2 + 2?");
     fireEvent.change(input, { target: { value: "not-4" } });
@@ -27,7 +35,11 @@ describe("onChange functionality", () => {
     const mockOnChange = jest.fn();
 
     render(
-      <TwoPlusTwo twoPlusTwoValue="4" onChangeTwoPlusTwoValue={mockOnChange} />
+      <TwoPlusTwo
+        twoPlusTwoValue="4"
+        onChangeTwoPlusTwoValue={mockOnChange}
+        errorMessages={[]}
+      />
     );
     const input = screen.getByLabelText("What is 2 + 2?");
     fireEvent.change(input, { target: { value: "42" } });

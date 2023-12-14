@@ -9,6 +9,7 @@ import validateSpeciesName from "../validate/validate_species_name";
 import validatePlanetName from "../validate/validate_planet_name";
 import validateSparingReason from "../validate/validate_sparing_reason";
 import validateNumberOfBeings from "../validate/validate_number_of_beings";
+import validateTwoPlusTwo from "../validate/validate_two_plus_two";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("humans");
@@ -23,7 +24,9 @@ const W12MForm = () => {
   >([]);
 
   const [twoPlusTwoValue, setTwoPlusTwoPlusValue] = useState("4");
-
+  const [twoPlusTwoValueErrorMsgs, setTwoPlusTwoValueErrorMsgs] = useState<
+    string[]
+  >([]);
   const [sparingReason, setSparingReason] = useState("");
   const [sparingReasonErrorMsgs, setSparingReasonErrorMsgs] = useState<
     string[]
@@ -49,6 +52,11 @@ const W12MForm = () => {
     validateBeings.length > 0
       ? setnumberOfBeingsErrorMsgs(validateBeings)
       : setnumberOfBeingsErrorMsgs([]);
+
+    const validateTwoCalc: string[] = validateTwoPlusTwo(twoPlusTwoValue);
+    validateTwoCalc.length > 0
+      ? setTwoPlusTwoValueErrorMsgs(validateTwoCalc)
+      : setTwoPlusTwoValueErrorMsgs([]);
 
     console.log(
       speciesName,
@@ -80,6 +88,7 @@ const W12MForm = () => {
       <TwoPlusTwo
         twoPlusTwoValue={twoPlusTwoValue}
         onChangeTwoPlusTwoValue={(e) => setTwoPlusTwoPlusValue(e)}
+        errorMessages={twoPlusTwoValueErrorMsgs}
       />
       <SparingReason
         sparingReason={sparingReason}
