@@ -19,7 +19,7 @@ const W12MForm = () => {
   const [planetErrorMsgs, setPlanetErrorMsgs] = useState<string[]>([]);
 
   const [numberOfBeings, setNumberOfBeings] = useState("0");
-  const [numberOfBeingsErrorMsgs, setnumberOfBeingsErrorMsgs] = useState<
+  const [numberOfBeingsErrorMsgs, setNumberOfBeingsErrorMsgs] = useState<
     string[]
   >([]);
 
@@ -50,8 +50,8 @@ const W12MForm = () => {
 
     const validateBeings: string[] = validateNumberOfBeings(numberOfBeings);
     validateBeings.length > 0
-      ? setnumberOfBeingsErrorMsgs(validateBeings)
-      : setnumberOfBeingsErrorMsgs([]);
+      ? setNumberOfBeingsErrorMsgs(validateBeings)
+      : setNumberOfBeingsErrorMsgs([]);
 
     const validateTwoCalc: string[] = validateTwoPlusTwo(twoPlusTwoValue);
     validateTwoCalc.length > 0
