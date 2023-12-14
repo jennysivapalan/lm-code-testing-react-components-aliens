@@ -40,7 +40,7 @@ test("calls the onChange function in input with correct value", () => {
   expect(mockOnChange).toHaveBeenCalledWith("Yes it is");
 });
 
-test("error messages are displayed when invalid species name is used", () => {
+test("error messages are displayed when invalid sparing reason is used", () => {
   const mockOnChange = jest.fn();
   const mockValidateSparingReason = jest.fn();
   mockValidateSparingReason.mockReturnValue([
